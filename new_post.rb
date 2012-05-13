@@ -15,10 +15,12 @@ Tumblife.configure do |config|
 end
 
 client = Tumblife.client
-client.create_post(
+
+post_id = client.create_post(
   "okinawaevent.tumblr.com", 
   :type  => "text", 
   :state => "draft",
   :title => "[下書き] 新規投稿テスト",
   :body  => "ここに本文を書く。 HTMLタグ=> <a href=\"http://okinawaevent.tumblr.com/\">iRyukyu</a>"
 )
+pp post_id						# => 22949978213
