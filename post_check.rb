@@ -7,6 +7,8 @@ require 'pp'
 
 tumblr_config = YAML.load_file("config.yml")
 
+BASE_HOSTNAME = tumblr_config[:base_hostname]
+
 Tumblife.configure do |config|
   config.consumer_key       = tumblr_config[:consumer_key]
   config.consumer_secret    = tumblr_config[:consumer_secret]
@@ -16,7 +18,7 @@ end
 
 client = Tumblife.client
 
-blog = client.posts("okinawaevent.tumblr.com", :type => "text", :limit => 1)
+blog = client.posts(BASE_HOSTNAME, :type => "text", :limit => 1)
 blog.posts.each do |post|
   pp post.blog_name             # => "okinawaevent"
   pp post.id                    # => 22892180485

@@ -7,6 +7,8 @@ require 'pp'
 
 tumblr_config = YAML.load_file("config.yml")
 
+BASE_HOSTNAME = tumblr_config[:base_hostname]
+
 Tumblife.configure do |config|
   config.consumer_key       = tumblr_config[:consumer_key]
   config.consumer_secret    = tumblr_config[:consumer_secret]
@@ -17,7 +19,7 @@ end
 client = Tumblife.client
 
 post_id = client.create_post(
-  "okinawaevent.tumblr.com", 
+  BASE_HOSTNAME, 
   :type  => "text", 
   :state => "draft",
   :title => "[下書き] 新規投稿テスト",
